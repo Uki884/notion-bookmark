@@ -22,7 +22,13 @@ const manifest = defineManifest({
     page: "src/chrome/options/index.html",
   },
   permissions: ["activeTab", "storage", "cookies"],
-  host_permissions: ["*://*.notion.so/"],
+  host_permissions: ["*://*.notion.so/", "https://api.notion.com/v1/*"],
+  content_scripts: [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/chrome/contentScript/index.ts"],
+    }
+  ]
 });
 
 export default defineConfig({
